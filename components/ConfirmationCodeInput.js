@@ -23,6 +23,7 @@ export default class ConfirmationCodeInput extends Component {
     containerStyle: viewPropTypes.style,
     onFulfill: PropTypes.func.isRequired,
     onCodeChange: PropTypes.func,
+    hideContextMenuDialog: PropTypes.bool,
   };
   
   static defaultProps = {
@@ -92,6 +93,8 @@ export default class ConfirmationCodeInput extends Component {
     this.setState({
       codeArr: newCodeArr,
       currentIndex: index
+    }, () => {
+      this.props.onCodeChange && this.props.onCodeChange(newCodeArr.join('')); // this.props.onCodeChange(this.state.codeArr);
     })
   }
   
@@ -246,7 +249,8 @@ export default class ConfirmationCodeInput extends Component {
       autoFocus,
       className,
       size,
-      activeColor
+      activeColor,
+      hideContextMenuDialog = true
     } = this.props;
     
     const initialCodeInputStyle = {
@@ -278,6 +282,7 @@ export default class ConfirmationCodeInput extends Component {
           onChangeText={text => this._onInputCode(text, id)}
           onKeyPress={(e) => this._onKeyPress(e)}
           maxLength={1}
+          contextMenuHidden={hideContextMenuDialog}
         />
       )
     }
