@@ -294,7 +294,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: 20
   },
   codeInput: {
     backgroundColor: 'transparent',
